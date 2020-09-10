@@ -1,0 +1,95 @@
+{
+  "realm": "local",
+  "enabled": true,
+  "registrationAllowed": true,
+  "requiredCredentials": [
+    "password"
+  ],
+  "clients": [
+  {
+    "clientId": "pac-backend",
+    "enabled": true,
+    "publicClient": true,
+    "baseUrl": "http://backend.minikube",
+    "redirectUris": [
+      "http://backend.minikube"
+    ],
+    "webOrigins": []
+  },
+  {
+    "clientId": "pac-frontend",
+    "enabled": true,
+    "publicClient": true,
+    "baseUrl": "http://frontend.minikube",
+    "redirectUris": [
+      "http://frontend.minikube"
+    ],
+    "webOrigins": []
+  }
+  ],
+  "roles": {
+    "realm": [
+    {
+      "name": "user",
+      "description": "User privileges"
+    },
+    {
+      "name": "admin",
+      "description": "Administrator privileges"
+    }
+    ]
+  },
+  "users": [
+  {
+    "username": "bsever",
+    "enabled": true,
+    "email": "bsever@prodyna.com",
+    "firstName": "Buenyamin",
+    "lastName": "Sever",
+    "credentials": [
+    {
+      "type": "password",
+      "value": "sanane67"
+    }
+    ],
+    "realmRoles": [
+      "user",
+      "admin"
+    ]
+  },
+  {
+    "username": "dkrizic",
+    "enabled": true,
+    "email": "dkrizic@prodyna.com",
+    "firstName": "Darko",
+    "lastName": "Krizic",
+    "credentials": [
+    {
+      "type": "password",
+      "value": "abc123"
+    }
+    ],
+    "realmRoles": [
+      "user",
+      "admin"
+    ]
+  },
+    {
+      "username": "aheizenreder",
+      "enabled": true,
+      "email": "aheizenreder@prodyna.com",
+      "firstName": "Andreas",
+      "lastName": "Heizenreder",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Sehr_Geheim#"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "admin"
+      ]
+    }
+  ]
+}

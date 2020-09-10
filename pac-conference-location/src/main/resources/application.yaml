@@ -1,0 +1,38 @@
+spring:
+  data:
+    neo4j:
+      uri: "bolt://localhost:7687"
+      username: "neo4j"
+      password: "764ct6%wkWhK"
+logging:
+  level:
+    root: info
+    com.prodyna: debug
+
+rest:
+  security:
+    enabled: true
+    api-matcher: /**
+    cors:
+      allowed-origin: *
+      allowed-headers: *
+      allowed-methods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - OPTIONS
+      max-age: 3600
+    issuer-uri: http://keycloak.minikube/auth/realms/local
+security:
+  oauth2:
+    resource:
+      id: pac-conference-location
+      token-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token/introspect
+      user-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/userinfo
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVnPjUIQUEChc+iXROtd4TKGk8cRI2ZI8+sEnNa3CbcXoTSVr0jHvAp9xRgyFPBaHEY86AZCaTeneHWx3/zVj1ZsHiRcdbGw+i+r088VjiJzVN0Nd1T2ZibU2DlxyeqaHgcpMPafl/46tFu0H01qOnrRHryQbJUOiHrmrvqctQLFJS51UXc7f7SE7fz6PHD79KL8vW7/A2I+LJWvi9VmPzxOI7m/GO9GBFbF8A8MJQAPYPeg/5T5GUPXmVy/qa5I1ou3YOpoSsn0Xz0iN5ede7E63bCVz2jJGKfQRf7ZpYSjGN9p7zSQJcTUXIjv3QWA36TQJWCO5l4c3ykC2ZB4fwIDAQAB
+          -----END PUBLIC KEY-----

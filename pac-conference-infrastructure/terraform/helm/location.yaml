@@ -1,0 +1,17 @@
+# values specialisation for location service
+image:
+  repository: pac-conference-location
+  tag: 0.0.1-SNAPSHOT
+ingress:
+  enabled: true
+  annotations:
+    "nginx.ingress.kubernetes.io/rewrite-target": "/"
+    # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    - paths:
+        - "/api/location"
+
+neo4j:
+  uri: bolt://neo4j-neo4j.persistence.svc:7687
+  accessSecret: location-neo4j-access

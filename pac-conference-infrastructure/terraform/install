@@ -1,0 +1,6 @@
+#!/bin/bash
+terraform validate
+terraform init
+terraform plan -var-file=environments/minikube.tfvars -out planfile
+terraform apply -auto-approve -input=false planfile
+rm planfile

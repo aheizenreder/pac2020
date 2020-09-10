@@ -1,0 +1,15 @@
+@Library('cnee-jenkins-lib') _
+import com.prodyna.cnee.jenkins.PodTemplates
+
+buildPipeline {
+    buildSlave = { label, body ->
+        new PodTemplates().maven_3_6_JDK11(label, body)
+    }
+
+    imageRegistryCredentials = ['https://harbor.prodyna.com' : 'demo-harbor-push']
+
+    buildCommand = { utils ->
+        def branchTag = utils.branchToDockerTag(this.env.BRANCH_NAME)
+        sh "mvn compile jib:build -Djib.to.image=harbor.prodyna.com/cnee/demo-springboot-service:${branchTag}"
+    }
+}

@@ -1,0 +1,28 @@
+@Library('cnee-jenkins-lib') _
+import com.prodyna.cnee.jenkins.PodTemplates
+
+buildPipeline {
+    buildSlave = { label, body ->
+        new PodTemplates().node_LTS(label, body)
+    }
+
+    imageRegistryCredentials = ['https://harbor.prodyna.com' : 'demo-harbor-push']
+
+    buildCommand = { utils ->
+        sh "npm install"
+        sh "npm run-script ng build --prod"
+
+        // Build and push image
+        def imageTag = utils.branchToDockerTag(this.env.BRANCH_NAME)
+      	def workspace = this.env.WORKSPACE
+      	utils.buildImageFromDockerfile(workspace, "${workspace}/Dockerfile", "harbor.prodyna.com/cnee/demo-angular-frontend:${imageTag}")
+    }
+  
+    // testCommand = { utils ->
+    //   sh "cp ToscaCI/config.properties /"
+    //   echo "Systemtest with Tosca"
+    //    sh "java -jar /ToscaCIJavaClient.jar -r **/test-reports/result.xml \"-m distributed\""
+    //    echo "Import test results result.xml"
+    //    junit "**/test-reports/*.xml"
+    // }
+}

@@ -1,0 +1,6 @@
+acceptLicenseAgreement: "yes"
+defaultDatabase: conference
+metrics:
+  prometheus:
+    enabled: true
+    endpoint: "localhost:2004"

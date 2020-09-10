@@ -1,0 +1,14 @@
+<main>
+  <h1>greeting works!</h1>
+  <br />
+  <h3 *ngIf="greeting">{{ greeting }}</h3>
+  <br />
+  <div>
+    <label
+      >name:
+      <input type="text" [formControl]="name" placeholder="name" />
+    </label>
+  </div>
+  <br />
+  <button type="button" (click)="greet()">Greet now</button>
+</main>
